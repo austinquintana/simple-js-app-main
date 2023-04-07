@@ -1,5 +1,6 @@
 // empty array 
-let pokemonList = [];
+let pokeDex = (function() {
+    let pokemonList = [];
 
 // first page 
 pokemonList[0] = {
@@ -22,5 +23,32 @@ pokemonList[2] = {
     types: ["Grass", "Poison"]
 };
 
-// testing the pages
-console.log(pokemonList);
+function add(pokemon) {
+    pokeDex.push(pokemon);
+}
+
+function getAll(){
+    return pokemonList;
+}
+
+return {
+    add: add,
+    getAll: getAll
+};
+
+})();
+
+pokeDex.getAll().forEach (function(pokemon){
+    document.write (pokemon.name+ ', ' + pokemon.height + ', is a' + pokemon.type + 'type pokemon.<br>')
+});
+
+for (let i = 0; i < pokemonList.length; i++){
+    document.write(pokemonList[i].name + " " + pokemonList[i].height + ")" + " ");
+
+    if (pokemonList[i].height > 1.3){
+        document.write("-Wow that's a big Pokemon");
+    } else {
+        document.write(" -Little Man!")
+    }
+    document.write("<br>")
+};

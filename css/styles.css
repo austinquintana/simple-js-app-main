@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  h1 {
+      font-family: var(--header-font);
+      font-size: 80px;
+      margin: 10px 0 30px;
+      line-height: 80px;
+  }
+  
+  h2 {
+      font-family: var(--header-font);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+  }
+  
+  h3 {
+      font-family: var(--header-font);
+      font-size: 18px;
+      font-weight: 500;
+  }
+  
+  a {
+      color: var(--platinum);
+  }
+  
+  a:visited {
+      color: var(--platinum);
+  }
+  
+  a:hover {
+      text-decoration: none;
+  }
+  
+  a:active {
+      color: var(--slate-grey);
+  }
+  
+  button, .button {
+      color: #fbfcfd;
+      padding: 10px 25px;
+      background: transparent;
+      border: 1px solid #fff;
+      border-radius: 20px;
+      outline: none;
+      cursor: pointer;
+  }
+  
+  button:hover, button:focus, .button:hover, .button:focus {
+      cursor: pointer;
+      opacity: 0.8;
+  }
+  
+  table {
+    width: 50%;
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+      padding-right: 40px;
+      text-align: left; 
+      color: black;
+  }
+  
+  .page-header { 
+      display: flex;
+      width: 100%;
+      padding: 20px 40px;
+      /*filter: drop-shadow(0px 2px 1px #300C0F)*/
+  }
+  
+  .page-header__item {
+      flex: 0 1 200px;
+  }
+  
+  .page-header__item:last-child {
+      flex-grow: 1;
+      text-align: right;
+  }
+  
+  .navigation-list {
+    width: 85%;
+    height: 15%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .navigation-list li {
+      display: inline-block;
+      margin-left: 15px;
+  }
+  
+  .navigation-list__item--active {
+      text-decoration: none;
+  }
+  
+    .profile_portrait {
+      float: left; 
+      width: 300px;
+      margin-right: 40px;
+      padding: 10px;
+      border-radius: 50%;
+  }
+  
+  .profile {
+      min-width: 360px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-top: 50px;
+  }
+  
+  .page-footer {
+      clear: both;
+      flex-direction: column;
+      text-align: center;
+  }
