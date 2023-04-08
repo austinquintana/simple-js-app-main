@@ -1,30 +1,10 @@
 // empty array 
 let pokeDex = (function () {
     let pokemonList = [];
-
-        // first page 
-        pokemonList[0] = {
-            name: "Squirtle",
-            height: 0.5, 
-            types: ["water"]
-        };
-
-        // second page
-        pokemonList[1] = {
-            name: "Charmander",
-            height: 0.6,
-                types: ["fire"]
-        };
-
-        //third page
-        pokemonList[2] = {
-            name: "Bulbasaur",
-            height: 0.7,
-            types: ["grass", "poison"]
-        };
+    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150"; 
 
     function add(pokemon) {
-        pokeDex.push(pokemon);
+        pokemonList.push(pokemon);
     }
 
     function getAll(){
@@ -40,22 +20,59 @@ let pokeDex = (function () {
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
         button.addEventListener("click", function (event) {
-            showDetails(pokemon)
+            showDetails(pokemon);
         });
      }
+    
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+          return response.json();
+        }).then(function (json) {
+          json.results.forEach(function (item) {
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url
+            };
+            add(pokemon);
+            console.log(pokemon);
+          });
+        }).catch(function (e) {
+          console.error(e);
+        })
+      }
 
-     function showDetails(pokemon) {
-        console.log(pokemon.name)
-     }
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+          return response.json();
+        }).then(function (details) {
+          // Now we add the details to the item
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
+        }).catch(function (e) {
+          console.error(e);
+        });
+      }
+
+     function showDetails(item) {
+        pokeDex.loadDetails(item).then(function() {
+        console.log(item)
+     });
+    }
 
     return {
         add: add,
         getAll: getAll,
-         addListItem: addListItem
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails,
+        showDetails: showDetails
     };
 })();
 
-pokeDex.getAll().forEach(function(pokemon) {
-    
-    pokeDex.addListItem(pokemon);
+pokeDex.loadList().then(function() {
+    pokeDex.getAll().forEach(function(pokemon) {
+      pokeDex.addListItem(pokemon);
+    }); 
 });
